@@ -1,1 +1,2 @@
-# sharp_cat_vgao10_awu10_jlee10_mmao10
+# Sharp Cat
+Victoria Gao, Alvin Wu, Jonathan Lee, Madelyn Mao
