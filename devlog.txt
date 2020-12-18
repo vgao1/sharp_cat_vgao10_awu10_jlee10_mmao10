@@ -1,0 +1,5 @@
+Team Sharp Cat Devlog
+
+VictoriaG -- 2020-12-18 03:00
+  -created design PDF document with project components, component map, database organization, site map for front end, and tasks
+  -uploaded document to team repo
