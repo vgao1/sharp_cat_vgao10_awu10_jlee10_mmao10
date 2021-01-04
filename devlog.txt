@@ -8,7 +8,7 @@ VictoriaG, AlvinW, JonathanL & MadelynM -- 2020-12-21 15:07
   -created design PDF document for Scenario 2 (web log hosting site)
   -uploaded document to team repo
   
-  VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
+VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
   -Issue #1: No action required
   -Issue #2: Will add the SQLite data type to the table
   -Issue #3: No action required
@@ -17,3 +17,8 @@ VictoriaG, AlvinW, JonathanL & MadelynM -- 2020-12-21 15:07
   -Issue #6: No action required
   -Issue #7: No action required
   -Issue #8: Will add timeline dates
+
+AlvinW -- 2021-01-04 5:11 PM
+  -Set up working methods for signup, login, and sessions.
+  -Set up database for storing user data 
+
