@@ -17,6 +17,9 @@ VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
   -Issue #6: No action required
   -Issue #7: No action required
   -Issue #8: Will add timeline dates
+  
+ MadelynM -- 2021-01-04 12:00
+  -Created base of app.py and html files
 
 AlvinW -- 2021-01-04 5:11 PM
   -Set up working methods for signup, login, and sessions.
