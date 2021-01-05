@@ -25,3 +25,8 @@ AlvinW -- 2021-01-04 5:11 PM
   -Set up working methods for signup, login, and sessions.
   -Set up database for storing user data 
 
+VictoriaG -- 2021-01-04 10:44 PM
+  -In README.md, added roster/roles, project description, and how to clone this repo, install modules, and run Python script.
+  -Organized files based on the repo structure described in P0 (Pt.2) instructions
+  -Created requirements.txt and added latest version of Flask
+  
