@@ -2,10 +2,6 @@
 <! SoftDev >
 <! P0 -- Da Art of Story Tellin' (Pt 2)>
 <! 2020-12-28 >
-
-<! (M/V), displays a list posts from a user, should be able to click on links that take you to viewblog.html>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -14,10 +10,19 @@
   </head>
 
   <body>
-   <h1> Welcome {{user}}! Here you view your friends post </h1>
+   <h1> Welcome {{user}}, to your own page in Team SharpCat's Blog </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+    
+    <h3></h3>
+    <a href = "/addblog">Add a blog!</a>
+
+    <a href = "/updateblog">Update a blog!</a>
+
+    <a href = "/viewall">View a friend's blog!</a>
+
+  </h3>
      
 <br></br>
     <form action = "/logout">

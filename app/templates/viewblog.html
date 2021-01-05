@@ -3,7 +3,9 @@
 <! P0 -- Da Art of Story Tellin' (Pt 2)>
 <! 2020-12-28 >
 
-<! (M) need to add form that takes in text as blog>
+<! (M/V), displays a blog entry>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -12,16 +14,15 @@
   </head>
 
   <body>
-   <h1> Welcome {{user}}! Here you can add your blog </h1>
+   <h1> Welcome {{user}}! Here you view your friends specific blog </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
-
-<form action="/add">
-       <textarea id="Text" name="Text" rows="25" cols="200"> </textarea> 
+     
 <br></br>
-	<input type = "submit" value ="Submit">
-</form>
+    <form action = "/logout">
+	<input type = "submit" value ="Logout">
+    </form>
 
   </body>
 

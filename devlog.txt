@@ -18,7 +18,7 @@ VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
   -Issue #7: No action required
   -Issue #8: Will add timeline dates
   
- MadelynM -- 2021-01-04 12:00
+MadelynM -- 2021-01-04 12:00PM
   -Created base of app.py and html files
 
 AlvinW -- 2021-01-04 5:11 PM
@@ -30,3 +30,8 @@ AlvinW -- 2021-01-05 11:28 AM
   -Set up posts database
   -Linked userID to sessionID and posts  
 
+VictoriaG -- 2021-01-04 10:44 PM
+  -In README.md, added roster/roles, project description, and how to clone this repo, install modules, and run Python script.
+  -Organized files based on the repo structure described in P0 (Pt.2) instructions
+  -Created requirements.txt and added latest version of Flask
+  
