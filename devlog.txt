@@ -23,5 +23,10 @@ VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
 
 AlvinW -- 2021-01-04 5:11 PM
   -Set up working methods for signup, login, and sessions.
-  -Set up database for storing user data 
+  -Set up database for storing user data
+
+AlvinW -- 2021-01-05 11:28 AM
+  -Wrote method to add a blog post
+  -Set up posts database
+  -Linked userID to sessionID and posts  
 

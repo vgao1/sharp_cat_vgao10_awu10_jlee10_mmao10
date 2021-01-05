@@ -6,24 +6,23 @@
 from flask import Flask,session            #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
+from datetime import datetime
 import os
 import sqlite3   #enable control of an sqlite database
 
 DB_FILE="discobandit.db"
 db = sqlite3.connect(DB_FILE, check_same_thread = False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
-c.execute('CREATE TABLE IF NOT EXISTS users(Username text, Password text, Bio text);')
+c.execute('CREATE TABLE IF NOT EXISTS users(ID Integer, Username text, Password text, Bio text);')
+c.execute('CREATE TABLE IF NOT EXISTS posts(ID Integer, UserID text, Text text, Date text);')
+db.commit()
 username = ''
 password = ''
-#the conventional way:
-#from flask import Flask, render_template, request
-
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(24)
+postcount = -1
+usercount = -1
 
-# delete after creating username/password in /auth
-#username = "dullcat" #USERNAME
-#password = "sharpiecats" #PASSWORD
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -31,7 +30,7 @@ def disp_loginpage():
         return render_template('response.html', user = username)
     return render_template('login.html')
 
-# (a/j) needs to be done 
+# (A) working at the moment 
 # login mechanism, needs to be edited
 @app.route("/auth") # , methods=['GET', 'POST'])
 def authenticate():
@@ -57,26 +56,32 @@ def authenticate():
     if len(data) == 1:
         session['username'] = username
         session['password'] = password
+        c.execute('SELECT ID FROM users WHERE username=? AND password = ?', (username,password))
+        userid = c.fetchone()
+        session['UserID'] = int(userid[0])
+        print(userid)
         return render_template('response.html', user = request.args['username'])
     else:
         return render_template ('error.html')
 
-# (a/j) needs to be done 
+# (A) done
 # sign up for an account, signup.html takes username, password, bio 
 # check if username is unique, add password specifications if desired
 
 @app.route("/signup") #methods = ['GET','POST'])
 def signup():
+        global usercount
         c = db.cursor()
         username = request.args['newusername']
         password = request.args['newpassword']
         bio = request.args['bio']
-        params = (username,password,bio)
         c.execute('SELECT * FROM users WHERE username=?', (username,))
         data = c.fetchall()
         if len(data) > 0:
             return render_template('error.html', error = 'A user with that username already exists')
-        c.execute('INSERT INTO users(Username,Password,Bio) VALUES(?,?,?)', params)
+        usercount+= 1
+        params = (usercount,username,password,bio)
+        c.execute('INSERT INTO users(ID,Username,Password,Bio) VALUES(?,?,?,?)', params)
         db.commit()
         return render_template('login.html')
 
@@ -89,8 +94,19 @@ def newuser():
 # (a/j) needs to be done 
 # adds a blog, addblog.html(not completed) will take take in a title and a body of text.
 @app.route("/addblog") 
-def add():
+def addblog():
     return render_template('addblog.html')
+
+@app.route("/add") 
+def add():
+    global postcount
+    c = db.cursor()
+    text = request.args['Text']
+    postcount += 1
+    params = (postcount,session['UserID'],text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
+    c.execute('INSERT INTO posts(ID,UserID,Text,Date) VALUES(?,?,?,?)', params)
+    db.commit()
+    return render_template('response.html',user = session['username'])
 
 # (a/j) needs to be done 
 # adds text to a previous page, 
