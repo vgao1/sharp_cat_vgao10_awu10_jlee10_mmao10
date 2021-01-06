@@ -108,6 +108,13 @@ def add():
     db.commit()
     return render_template('response.html',user = session['username'])
 
+
+# (a/j) needs to be done 
+# lists all blog entries from a user
+@app.route("/viewallblogs") 
+def viewallblogs():
+    return render_template('viewallblogs.html')
+
 # (a/j) needs to be done 
 # adds text to a previous page, 
 @app.route("/updateblog") 
