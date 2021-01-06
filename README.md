@@ -1,4 +1,4 @@
-# `<`Project Name`>` by Sharp Cat
+# `<`Sharp Blogs`>` by Sharp Cat
 ## Roster & Roles:
 * Victoria Gao (Project Manager): 
   * Website Navigation
