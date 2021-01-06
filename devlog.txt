@@ -35,3 +35,5 @@ AlvinW -- 2021-01-05 11:28 AM
   -Set up posts database
   -Linked userID to sessionID and posts  
   
+MadelynM -- 2021-01-04 08:34PM
+  -added html files for updating blogs
