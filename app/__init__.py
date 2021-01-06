@@ -14,7 +14,7 @@ DB_FILE="discobandit.db"
 db = sqlite3.connect(DB_FILE, check_same_thread = False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
 c.execute('CREATE TABLE IF NOT EXISTS users(ID Integer, Username text, Password text, Bio text);')
-c.execute('CREATE TABLE IF NOT EXISTS posts(ID Integer, UserID text, Text text, Date text);')
+c.execute('CREATE TABLE IF NOT EXISTS posts(ID Integer, UserID text, Title text, Text text, Date text);')
 db.commit()
 username = ''
 password = ''
@@ -102,9 +102,10 @@ def add():
     global postcount
     c = db.cursor()
     text = request.args['Text']
+    title = request.args['Title']
     postcount += 1
-    params = (postcount,session['UserID'],text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
-    c.execute('INSERT INTO posts(ID,UserID,Text,Date) VALUES(?,?,?,?)', params)
+    params = (postcount,session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
+    c.execute('INSERT INTO posts(ID,UserID,Title,Text,Date) VALUES(?,?,?,?,?)', params)
     db.commit()
     return render_template('response.html',user = session['username'])
 
