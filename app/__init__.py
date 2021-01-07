@@ -150,7 +150,7 @@ def viewall():
 # reminder on db: ID Integer, UserID text, Title text, Text text, Date text
 @app.route("/post/<posturl>") # changed from viewblog
 def viewblogpost(posturl):
-    if type(posturl) is int: # to avoid errors
+    if posturl.isnumeric(): # to avoid errors
         c = db.cursor()
         c.execute('SELECT title, text, date FROM posts WHERE id = \'' + str(posturl) + '\'') # gets the post info by ID
         postinfo = c.fetchall()[0]
