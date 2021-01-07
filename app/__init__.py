@@ -5,7 +5,7 @@
 
 from flask import Flask,session            #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
-from flask import request           #facilitate form submission
+from flask import request, redirect           #facilitate form submission
 from datetime import datetime
 import os
 import sqlite3   #enable control of an sqlite database
@@ -113,7 +113,7 @@ def newpost():
 # redirects logged in user to their own blog
 @app.route("/blog") 
 def loggedinblog():
-    return redirect('/blog/'+ session['username'],status=True)
+    return redirect('/blog/'+ session['username'])
 
 # (a/j) needs a lot of work
 # edit menu for a previously posted post, must have been the current user's (needs verification) 
@@ -128,22 +128,20 @@ def viewuserblog(usrname):
     c = db.cursor()
     c.execute('SELECT ID FROM users WHERE username = \'' + str(usrname) + '\'')
     userid = c.fetchall()[0]
-    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + str(userid[0]) + '\''
-        'ORDER BY id DESC') #descending
+    c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\''
+        'ORDER BY ID DESC') #descending
     posts = c.fetchall()
     c.close()
-    return render_template('viewuserblog.html', user=usrname, posts=posts)
+    return render_template('viewuserblog.html', user=usrname, posts=posts, status = True)
 
 # (j) doneish?
 # returns all posts by everyone, recent ones first
 @app.route("/all") 
 def viewall():
-    c.execute('SELECT id, userid, title, text, date FROM posts'
-        'ORDER BY id DESC') #descending
-    posts = c.fetchall()
+    c.execute('SELECT * FROM posts ORDER BY ID DESC') #descending
+    posts1 = c.fetchall()
     # add user fetch with id and replacing in posts var :pensive:
-    c.close()
-    return render_template('viewall.html', posts=posts)
+    return render_template('viewallposts.html', posts=posts1, status = True, user=session['username'])
 
 # (j) done, needs optimization though
 # displays one post
@@ -152,12 +150,16 @@ def viewall():
 def viewblogpost(posturl):
     if posturl.isnumeric(): # to avoid errors
         c = db.cursor()
-        c.execute('SELECT title, text, date FROM posts WHERE id = \'' + str(posturl) + '\'') # gets the post info by ID
+        c.execute('SELECT UserID,Title, Text, Date FROM posts WHERE ID = \'' + str(posturl) + '\'') # gets the post info by ID
         postinfo = c.fetchall()[0]
-        c.execute('SELECT username FROM users WHERE id = \'' + str(postinfo[1]) + '\'') # gets user by user ID from post
+        c.execute('SELECT Username FROM users WHERE ID = \'' + str(postinfo[0]) + '\'') # gets user by user ID from post
         userinfo = c.fetchall()
         c.close()
-        return render_template('viewblogpost.html', title=postinfo[0], author=userinfo[0], body=postinfo[1], date=postinfo[2])
+        print(postinfo[0])
+        print(postinfo[1])
+        print(postinfo[2])
+        print(userinfo[0])
+        return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, user = session['username'])
     else:
         return render_template('error.html', error='Not a valid blog post URL!')
 

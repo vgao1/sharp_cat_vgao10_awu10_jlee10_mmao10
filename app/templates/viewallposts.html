@@ -7,7 +7,8 @@
 
 <!DOCTYPE html>
 <html>
-
+{% extends "base.html" %}
+{% block body %}
   <head>
     <title> Team SharpCat </title>
   </head>
@@ -17,6 +18,20 @@
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+ {% for p in posts %}
+      <header>
+        <div>
+          <h3>Title: {{ p[2] }}</h3>
+          <div class="authorinfo">by {{ user }} on {{ p[4] }}</div> <!-- add date formatter --> 
+        </div>
+        <!-- add edit button here or something -->
+      </header>
+      <br>
+      Text: <p class="body">{{ p[3] }}</p>
+      <br>
+    {% if not loop.last %}
+    {% endif %}
+    {% endfor %}
 
 
      
@@ -26,5 +41,5 @@
     </form>
 
   </body>
-
+{% endblock %}
 </html>

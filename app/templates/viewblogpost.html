@@ -8,7 +8,8 @@
 
 <!DOCTYPE html>
 <html>
-
+{% extends "base.html" %}
+{% block body %}
   <head>
     <title> Team SharpCat </title>
   </head>
@@ -18,6 +19,11 @@
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+
+Title: {{title}}
+By: {{author}}
+Written On: {{date}}
+Text: {{body}}
      
 <br></br>
     <form action = "/logout">
@@ -25,5 +31,5 @@
     </form>
 
   </body>
-
+{% endblock %}
 </html>

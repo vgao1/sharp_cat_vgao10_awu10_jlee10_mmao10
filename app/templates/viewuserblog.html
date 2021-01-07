@@ -8,13 +8,14 @@
 
 <!DOCTYPE html>
 <html>
-
+{% extends "base.html" %}
+{% block body %}
   <head>
     <title> Team SharpCat </title>
   </head>
 
   <body>
-   <h1> Welcome {{user}}! Here is a list of posts from a specific user (mention the user) </h1>
+   <h1> Welcome {{user}}! Here is a list of posts from {{user}} </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
@@ -22,14 +23,17 @@
     {% for p in posts %}
       <header>
         <div>
-          <h3>{{ p[1] }}</h3>
+          <h3>Title: {{ p[1] }}</h3>
           <div class="authorinfo">by {{ user }} on {{ p[3] }}</div> <!-- add date formatter --> 
         </div>
         <!-- add edit button here or something -->
       </header>
-      <p class="body">{{ p[2] }}</p>
+      <br>
+      Text: <p class="body">{{ p[2] }}</p>
+      <br>
     {% if not loop.last %}
     {% endif %}
+    {% endfor %}
      
 <br></br>
     <form action = "/logout">
@@ -37,5 +41,6 @@
     </form>
 
   </body>
+{% endblock %}
 
 </html>
