@@ -76,3 +76,6 @@ AlvinW -- 2021-01-07 4:14 PM
   -bugfixes for code that jonathan wrote
   -finished implementing some features (added wip browse all functionality, viewing individual posts, and viewing your own posts)
   -edited templates to make them contain navbar by extending base.html
+
+JonathanL -- 2021-01-07 5:28 PM
+  -Cleaned up html comments and headings
