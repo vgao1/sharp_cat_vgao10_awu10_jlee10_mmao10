@@ -152,9 +152,9 @@ def viewall():
 def viewblogpost(posturl):
     if type(posturl) is int: # to avoid errors
         c = db.cursor()
-        c.execute('SELECT title, text, date FROM posts WHERE id = \'' + int(posturl) + '\'') # gets the post info by ID
-        postinfo = c.fetchall()
-        c.execute('SELECT username FROM users WHERE UserID = \'' + int(postinfo[1]) + '\'') # gets user by user ID from post
+        c.execute('SELECT title, text, date FROM posts WHERE id = \'' + str(posturl) + '\'') # gets the post info by ID
+        postinfo = c.fetchall()[0]
+        c.execute('SELECT username FROM users WHERE id = \'' + str(postinfo[1]) + '\'') # gets user by user ID from post
         userinfo = c.fetchall()
         c.close()
         return render_template('viewblogpost.html', title=postinfo[0], author=userinfo[0], body=postinfo[1], date=postinfo[2])
