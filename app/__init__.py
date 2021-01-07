@@ -109,7 +109,7 @@ def add():
 def newpost():
     return render_template('addpost.html',status=True,user = session['username'])
 
-# (j) set up, not done
+# (j) set up
 # redirects logged in user to their own blog
 @app.route("/blog") 
 def loggedinblog():

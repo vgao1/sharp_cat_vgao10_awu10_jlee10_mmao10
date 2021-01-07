@@ -64,8 +64,8 @@ JonathanL -- 2021-01-06 11:03 PM
   -Added more descriptive specification comments for routes
   -new /blog that redirects to the logged in user's blog
   -updateblog.html -> updatepost.html
-  -got viewblogpost working
-  -made viewuserblog work(?)
+  -got viewblogpost skeleton done
+  -made viewuserblog kinda
   -worked on viewall
   -tried to make their templates work together as well
 
