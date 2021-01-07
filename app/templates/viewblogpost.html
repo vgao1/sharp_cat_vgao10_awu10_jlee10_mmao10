@@ -24,12 +24,15 @@ displays a specific blog post
     </h2>
 
 <h3> {{title}} </h3>
-<br>
 By: {{author}} 
 <br>
 Written On: {{date}}
 <br>
+<br>
 {{body}}
+
+<br>
+<br>
 
 {% if (allowEdit) %}
 <form action="/post/{{posturl}}/edit">

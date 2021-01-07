@@ -86,4 +86,4 @@ AlvinW -- 2021-01-07 5:36 PM
 
 JonathanL -- 2021-01-07 __:__PM
   -Edited post template to be more readable
-  -Changed post order
+  -Changed post order (newest on top) with |reverse

@@ -143,8 +143,7 @@ def viewuserblog(usrname):
     c = db.cursor()
     c.execute('SELECT ID FROM users WHERE username = \'' + str(usrname) + '\'')
     userid = c.fetchall()[0]
-    c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\''
-        'ORDER BY ID DESC') #descending
+    c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\'')
     posts = c.fetchall()
     c.close()
     return render_template('viewuserblog.html', user=usrname, posts=posts, status = True)
@@ -153,9 +152,10 @@ def viewuserblog(usrname):
 # returns all posts by everyone, recent ones first
 @app.route("/all") 
 def viewall():
-    c.execute('SELECT * FROM posts ORDER BY ID DESC') #descending
+    c.execute('SELECT * FROM posts')
     posts1 = c.fetchall()
     # add user fetch with id and replacing in posts var :pensive:
+    c.execute('SELECT username FROM users')
     if ('username' not in session):
         return render_template('viewallposts.html', posts=posts1, status = False, user = 'Guest')
     else:

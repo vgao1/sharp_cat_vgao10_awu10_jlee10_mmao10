@@ -21,7 +21,7 @@ Displays a list of posts from a specific user
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
     <br>
-    {% for p in posts %}
+    {% for p in posts|reverse %}
       <header>
         <div>
           <h3><a href="/post/{{p[0]}}">{{ p[1] }}</a></h3>
