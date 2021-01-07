@@ -127,7 +127,7 @@ def viewuserblog(usrname):
     c = db.cursor()
     c.execute('SELECT ID FROM users WHERE username = \'' + str(usrname) + '\'')
     userid = c.fetchall()[0]
-    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + int(userid[0]) + '\''
+    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + str(userid[0]) + '\''
         'ORDER BY id DESC') #descending
     posts = c.fetchall()
     c.close()
