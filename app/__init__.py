@@ -107,7 +107,7 @@ def add():
 # adds a blog, addpost.html(not completed) will take take in a title and a body of text.
 @app.route("/post/new") 
 def newpost():
-    return render_template('addpost.html',status=True)
+    return render_template('addpost.html',status=True,user = session['username'])
 
 # (j) set up, not done
 # redirects logged in user to their own blog
