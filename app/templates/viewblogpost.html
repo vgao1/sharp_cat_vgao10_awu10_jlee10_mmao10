@@ -23,10 +23,13 @@ displays a specific blog post
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
 
-Title: {{title}}
-By: {{author}}
+<h3> {{title}} </h3>
+<br>
+By: {{author}} 
+<br>
 Written On: {{date}}
-Text: {{body}}
+<br>
+{{body}}
 
 {% if (allowEdit) %}
 <form action="/post/{{posturl}}/edit">
