@@ -28,7 +28,7 @@ usercount = -1
 def disp_loginpage():
     if 'username' in session:
         return render_template('response.html', user = username)
-    return render_template('login.html')
+    return render_template('login.html',status=False)
 
 # (A) working at the moment 
 # login mechanism, needs to be edited
@@ -60,9 +60,9 @@ def authenticate():
         userid = c.fetchone()
         session['UserID'] = int(userid[0])
         print(userid)
-        return render_template('response.html', user = request.args['username'])
+        return render_template('response.html', user = request.args['username'],status=True)
     else:
-        return render_template ('error.html')
+        return render_template ('error.html',status=False)
 
 # (A) done
 # sign up for an account, signup.html takes username, password, bio 
@@ -83,19 +83,19 @@ def signup():
         params = (usercount,username,password,bio)
         c.execute('INSERT INTO users(ID,Username,Password,Bio) VALUES(?,?,?,?)', params)
         db.commit()
-        return render_template('login.html')
+        return render_template('login.html',status=False)
 
 # middle method, going straight to signup doesn't work. renders the actual signup page    
 @app.route("/newuser", methods = ['GET','POST'])
 def newuser():
-        return render_template('signup.html')
+        return render_template('signup.html',status=False)
 
 
 # (a/j) needs to be done 
 # adds a blog, addblog.html(not completed) will take take in a title and a body of text.
 @app.route("/addblog") 
 def addblog():
-    return render_template('addblog.html')
+    return render_template('addblog.html',status=True)
 
 @app.route("/add") 
 def add():
@@ -107,38 +107,38 @@ def add():
     params = (postcount,session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
     c.execute('INSERT INTO posts(ID,UserID,Title,Text,Date) VALUES(?,?,?,?,?)', params)
     db.commit()
-    return render_template('response.html',user = session['username'])
+    return render_template('response.html',user = session['username'],status=True)
 
 
 # (a/j) needs to be done 
 # lists all blog entries from a user
 @app.route("/viewallblogs") 
 def viewallblogs():
-    return render_template('viewallblogs.html')
+    return render_template('viewallblogs.html',status=True)
 
 # (a/j) needs to be done 
 # adds text to a previous page, 
 @app.route("/updateblog") 
 def update():
-    return render_template('updateblog.html')
+    return render_template('updateblog.html',status=True)
 
 # (a/j) needs to be done 
 # returns a list of the users
 @app.route("/viewall") 
 def viewall():
-    return render_template('viewall.html')
+    return render_template('viewall.html',status=True)
 
 # (a/j) needs to be done 
 # returns a list of the blogs from a certain user
 @app.route("/viewuser") 
 def viewuser():
-    return render_template('viewuser.html')
+    return render_template('viewuser.html',status=True)
 
 # (a/j) needs to be done 
 # displays one blog
 @app.route("/viewblog") 
 def viewblog():
-    return render_template('viewblog.html')
+    return render_template('viewblog.html',status=True)
 
 # profile displays a user's biography
 @app.route("/profile")
@@ -148,7 +148,7 @@ def viewprofile():
 @app.route("/logout") #logout
 def logout():
     session.pop('username', None)
-    return render_template('login.html')
+    return render_template('login.html',status=False)
 
     
 if __name__ == "__main__": #false if this file imported as module
