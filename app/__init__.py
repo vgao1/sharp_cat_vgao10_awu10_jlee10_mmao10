@@ -140,6 +140,10 @@ def viewuser():
 def viewblog():
     return render_template('viewblog.html')
 
+# profile displays a user's biography
+@app.route("/profile")
+def viewprofile():
+    return render_template('profile.html',status=True)
 
 @app.route("/logout") #logout
 def logout():
