@@ -125,10 +125,11 @@ def updaterender(posturl):
     data = data[0]
     oldtitle = data[0]
     oldtext = data[1]
-    return render_template('updatepost.html',status=True, oldtitle = oldtitle, oldtext = oldtext)
+    print(posturl)
+    return render_template('updatepost.html',status=True, oldtitle = oldtitle, oldtext = oldtext, posturl = posturl)
 
-@app.route("/update")
-def update():
+@app.route("/update/<posturl>")
+def update(posturl):
     c = db.cursor()
     c.execute('UPDATE posts SET Title =' + request.args['Title'] + ', Text =' + request.args['Text'] + ', Date =' + datetime.today().strftime('%Y-%m-%d-%H:%M') + 'WHERE ID=?',(posturl,))
     db.commit()
