@@ -1,5 +1,6 @@
 #welp.
 __pycache__
+*.db-journal
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -9,3 +10,5 @@ __pycache__
 
 # Local History for Visual Studio Code
 .history/
+
+#other stuff

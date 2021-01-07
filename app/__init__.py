@@ -28,7 +28,8 @@ usercount = -1
 def disp_loginpage():
     if 'username' in session:
         return render_template('response.html', user = username)
-    return render_template('login.html',status=False)
+    else
+        return render_template('login.html',status=False)
 
 # (A) working at the moment 
 # login mechanism, needs to be edited
@@ -127,7 +128,7 @@ def viewuserblog(usrname):
     c = db.cursor()
     c.execute('SELECT ID FROM users WHERE username = \'' + str(usrname) + '\'')
     userid = c.fetchall()[0]
-    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + int(userid[0]) + '\''
+    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + str(userid[0]) + '\''
         'ORDER BY id DESC') #descending
     posts = c.fetchall()
     c.close()
