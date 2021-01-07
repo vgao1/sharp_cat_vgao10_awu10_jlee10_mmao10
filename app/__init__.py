@@ -27,8 +27,8 @@ usercount = -1
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
     if 'username' in session:
-        return render_template('response.html', user = username)
-    else
+        return render_template('response.html', user = session['username'], status = True)
+    else:
         return render_template('login.html',status=False)
 
 # (A) working at the moment 
@@ -113,7 +113,7 @@ def newpost():
 # redirects logged in user to their own blog
 @app.route("/blog") 
 def loggedinblog():
-    return redirect('/blog/'+ username,status=True)
+    return redirect('/blog/'+ session['username'],status=True)
 
 # (a/j) needs a lot of work
 # edit menu for a previously posted post, must have been the current user's (needs verification) 
