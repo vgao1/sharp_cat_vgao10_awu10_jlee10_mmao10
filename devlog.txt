@@ -68,3 +68,6 @@ JonathanL -- 2021-01-06 11:03 PM
   -made viewuserblog work(?)
   -worked on viewall
   -tried to make their templates work together as well
+
+JonathanL -- 2021-01-07 12:00 PM
+  -bugfixes for the code i wrote

@@ -28,7 +28,8 @@ usercount = -1
 def disp_loginpage():
     if 'username' in session:
         return render_template('response.html', user = username)
-    return render_template('login.html',status=False)
+    else
+        return render_template('login.html',status=False)
 
 # (A) working at the moment 
 # login mechanism, needs to be edited
