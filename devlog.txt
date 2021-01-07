@@ -64,8 +64,8 @@ JonathanL -- 2021-01-06 11:03 PM
   -Added more descriptive specification comments for routes
   -new /blog that redirects to the logged in user's blog
   -updateblog.html -> updatepost.html
-  -got viewblogpost working
-  -made viewuserblog work(?)
+  -got viewblogpost skeleton done
+  -made viewuserblog kinda
   -worked on viewall
   -tried to make their templates work together as well
 
@@ -83,3 +83,7 @@ JonathanL -- 2021-01-07 5:28 PM
 AlvinW -- 2021-01-07 5:36 PM
   -got about 80% through with the updating blogs feature, was stopped by unknown syntax error
   -fleshed out updateblog.html with necessary info
+
+JonathanL -- 2021-01-07 __:__PM
+  -Edited post template to be more readable
+  -Changed post order
