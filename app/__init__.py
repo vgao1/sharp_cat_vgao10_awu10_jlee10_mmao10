@@ -100,7 +100,7 @@ def add():
     params = (postcount,session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
     c.execute('INSERT INTO posts(ID,UserID,Title,Text,Date) VALUES(?,?,?,?,?)', params)
     db.commit()
-    return render_template('response.html',status=True)
+    return render_template('response.html',status=True,user = session['username'])
 
 # (a/j) needs to be done 
 # adds a blog, addpost.html(not completed) will take take in a title and a body of text.
