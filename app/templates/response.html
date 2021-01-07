@@ -1,34 +1,15 @@
-<! Team SharpCat (Alvin Wu, Madelyn Mao, Jonathan Lee, Victoria Gao) >
-<! SoftDev >
-<! P0 -- Da Art of Story Tellin' (Pt 2)>
-<! 2020-12-28 >
+<!-- 
+Team SharpCat (Alvin Wu, Madelyn Mao, Jonathan Lee, Victoria Gao) 
+SoftDev 
+P0 -- Da Art of Story Tellin' (Pt 2)
+2020-12-28 
+-->
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <title> Team SharpCat </title>
-  </head>
-
-  <body>
+  {% extends "base.html" %}
+  {% block title %} {{user}} {% endblock %}
+  {% block body %}
    <h1> Welcome {{user}}, to your own page in Team SharpCat's Blog </h1>
-   <h2>
-    Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
-    </h2>
-    
-    <h3></h3>
-    <a href = "/addblog">Add a blog!</a>
-
-    <a href = "/updateblog">Update a blog!</a>
-
-    <a href = "/viewall">View a friend's blog!</a>
-
-  </h3>
-     
-<br></br>
-    <form action = "/logout">
-	<input type = "submit" value ="Logout">
-    </form>
-
-  </body>
-
+   <br></br>
+  {% endblock %}
 </html>

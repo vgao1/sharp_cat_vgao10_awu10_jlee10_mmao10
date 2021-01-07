@@ -1,38 +1,36 @@
-<! Team SharpCat (Alvin Wu, Madelyn Mao, Jonathan Lee, Victoria Gao) >
-<! SoftDev >
-<! P0 -- Da Art of Story Tellin' (Pt 2)>
-<! 2020-12-28 >
+<!-- 
+Team SharpCat (Alvin Wu, Madelyn Mao, Jonathan Lee, Victoria Gao) 
+SoftDev 
+P0 -- Da Art of Story Tellin' (Pt 2)
+2020-12-28 
+-->
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <title> Team SharpCat </title>
-  </head>
-
-  <body>
+  {% extends "base.html" %}
+  {% block title %} Login {% endblock %}
+  {% block body %}
     <h1>
     Welcome to SharpCat Blogs!
     </h1>
     <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+    <h3>
+    Enter your username and password below to proceed.
+    </h3>
+        <form action="/auth">
+          Username <input type="text" name="username">
+          <br></br>
+          Password <input type = "text" name = "password">
+          <br></br>
+          <input type="submit" name="sub1">
+        </form>
+        <br>
 
-<h3>
-Enter your username and password below to proceed.
-</h3>
-    <form action="/auth">
-       Username <input type="text" name="username">
-       <br></br>
-       Password <input type = "text" name = "password">
-       <br></br>
-      <input type="submit" name="sub1">
-    </form>
-     <br>
-
-  <h3>
-    No account? Sign up at this link below!
-  </h3>
-      <a href = "/newuser">Click Me!</a>
-  </body>
+      <h3>
+        No account? Sign up at this link below!
+      </h3>
+      <a id="createacct" href = "/newuser">Create Account</a>
+  {% endblock %}
 
 </html>
