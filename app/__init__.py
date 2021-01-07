@@ -156,7 +156,10 @@ def viewall():
     c.execute('SELECT * FROM posts ORDER BY ID DESC') #descending
     posts1 = c.fetchall()
     # add user fetch with id and replacing in posts var :pensive:
-    return render_template('viewallposts.html', posts=posts1, status = True, user=session['username'])
+    if ('username' not in session):
+        return render_template('viewallposts.html', posts=posts1, status = False, user = 'Guest')
+    else:
+        return render_template('viewallposts.html', posts=posts1, status = True, user=session['username'])
 
 # (j) bugfix time!! also needs optimization
 # displays one post
@@ -175,6 +178,8 @@ def viewblogpost(posturl):
         print(postinfo[1])
         print(postinfo[2])
         print(userinfo[0])
+        if ('username' not in session):
+            return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = False, allowEdit = False, user = 'Guest', posturl = posturl)
         if userinfo[0] == session['username']:
             return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, allowEdit = True, user = session['username'], posturl = posturl)
         else:
