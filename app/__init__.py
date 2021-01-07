@@ -107,7 +107,7 @@ def add():
     params = (postcount,session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
     c.execute('INSERT INTO posts(ID,UserID,Title,Text,Date) VALUES(?,?,?,?,?)', params)
     db.commit()
-    return render_template('response.html',user = session['username'],status=True)
+    return render_template('response.html',status=True)
 
 
 # (a/j) needs to be done 
@@ -143,7 +143,11 @@ def viewblog():
 # profile displays a user's biography
 @app.route("/profile")
 def viewprofile():
-    return render_template('profile.html',status=True)
+    c = db.cursor()
+    c.execute('SELECT Bio FROM users WHERE username=?',(session['username'],))
+    data = c.fetchone()
+    data = str(data[0])
+    return render_template('profile.html',status=True, bio = data, user = session['username'])
 
 @app.route("/logout") #logout
 def logout():
