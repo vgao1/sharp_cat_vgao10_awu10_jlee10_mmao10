@@ -109,7 +109,7 @@ def add():
 def newpost():
     return render_template('addpost.html',status=True)
 
-# (j) done i guess
+# (j) set up, not done
 # redirects logged in user to their own blog
 @app.route("/blog") 
 def loggedinblog():
@@ -121,7 +121,7 @@ def loggedinblog():
 def update():
     return render_template('updatepost.html',status=True)
 
-# (j) doneish?
+# (j) bugfix time!!
 # lists all blog entries from a user (replaced viewuser)
 @app.route("/blog/<usrname>") 
 def viewuserblog(usrname):
@@ -134,7 +134,7 @@ def viewuserblog(usrname):
     c.close()
     return render_template('viewuserblog.html', user=usrname, posts=posts, status = True)
 
-# (j) doneish?
+# (j) bugfix time!!
 # returns all posts by everyone, recent ones first
 @app.route("/all") 
 def viewall():
@@ -143,7 +143,7 @@ def viewall():
     # add user fetch with id and replacing in posts var :pensive:
     return render_template('viewallposts.html', posts=posts1, status = True, user=session['username'])
 
-# (j) done, needs optimization though
+# (j) bugfix time!! also needs optimization
 # displays one post
 # reminder on db: ID Integer, UserID text, Title text, Text text, Date text
 @app.route("/post/<posturl>") # changed from viewblog
