@@ -24,6 +24,12 @@ Title: {{title}}
 By: {{author}}
 Written On: {{date}}
 Text: {{body}}
+
+{% if (allowEdit) %}
+<form action="/post/{{posturl}}/edit">
+<input type="submit" value="Edit">
+</form>
+{% endif %}
      
 <br></br>
     <form action = "/logout">

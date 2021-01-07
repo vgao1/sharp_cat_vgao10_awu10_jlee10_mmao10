@@ -118,8 +118,22 @@ def loggedinblog():
 # (a/j) needs a lot of work
 # edit menu for a previously posted post, must have been the current user's (needs verification) 
 @app.route("/post/<posturl>/edit") 
+def updaterender(posturl):
+    c = db.cursor()
+    c.execute('SELECT Title, Text FROM posts WHERE ID=?', (posturl,))
+    data = c.fetchall()
+    data = data[0]
+    oldtitle = data[0]
+    oldtext = data[1]
+    return render_template('updatepost.html',status=True, oldtitle = oldtitle, oldtext = oldtext)
+
+@app.route("/update")
 def update():
-    return render_template('updatepost.html',status=True)
+    c = db.cursor()
+    c.execute('UPDATE posts SET Title =' + request.args['Title'] + ', Text =' + request.args['Text'] + ', Date =' + datetime.today().strftime('%Y-%m-%d-%H:%M') + 'WHERE ID=?',(posturl,))
+    db.commit()
+    return redirect('/post/' + posturl)
+    
 
 # (j) bugfix time!!
 # lists all blog entries from a user (replaced viewuser)
@@ -154,12 +168,16 @@ def viewblogpost(posturl):
         postinfo = c.fetchall()[0]
         c.execute('SELECT Username FROM users WHERE ID = \'' + str(postinfo[0]) + '\'') # gets user by user ID from post
         userinfo = c.fetchall()
+        userinfo = userinfo[0]
         c.close()
         print(postinfo[0])
         print(postinfo[1])
         print(postinfo[2])
         print(userinfo[0])
-        return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, user = session['username'])
+        if userinfo[0] == session['username']:
+            return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, allowEdit = True, user = session['username'], posturl = posturl)
+        else:
+            return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, allowEdit = False, user = session['username'], posturl = posturl)        
     else:
         return render_template('error.html', error='Not a valid blog post URL!')
 

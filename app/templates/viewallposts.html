@@ -21,7 +21,7 @@
  {% for p in posts %}
       <header>
         <div>
-          <h3>Title: {{ p[2] }}</h3>
+          <h3><a href="post/{{p[0]}}">Title: {{ p[2] }}</a></h3>
           <div class="authorinfo">by {{ user }} on {{ p[4] }}</div> <!-- add date formatter --> 
         </div>
         <!-- add edit button here or something -->
