@@ -38,7 +38,11 @@ AlvinW -- 2021-01-05 11:28 AM
 MadelynM -- 2021-01-05 08:34PM
   -added html files for updating blogs
 
-VictoriaG -- 2021-01-06 20:53
+VictoriaG -- 2021-01-06 8:53 PM
   -Added base.html, which is a parent template that sets up a navigation bar based on whether the user is logged in.  base.html contains {%block} statements in the <head> and <body> sections that are placeholders filled in with content between {%block} statements in the children templates.
   -Added profile.html that displays a user's biography
   -Added link to profile.html in app.py with viewprofile() function
+
+AlvinW -- 2021-01-06 10:04 PM
+  -Fixed some issues related to navbar
+  -Added profile functionality, displaying the user's bio
