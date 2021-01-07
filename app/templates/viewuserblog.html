@@ -14,10 +14,21 @@
   </head>
 
   <body>
-   <h1> Welcome {{user}}! Here you view your friends post </h1>
+   <h1> Welcome {{user}}! Here is a list of posts from a specific user (mention the user) </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+
+    {% for p in posts %}
+      <header>
+        <div>
+          <h3>{{ p[1] }}</h3>
+          <div class="about">by {{ user }} on {{ p[3] }}</div> <!-- add date formatter --> 
+        </div>
+        <!-- add edit button here or something -->
+      </header>
+      <p class="body">{{ p[2] }}</p>
+    {% if not loop.last %}
      
 <br></br>
     <form action = "/logout">

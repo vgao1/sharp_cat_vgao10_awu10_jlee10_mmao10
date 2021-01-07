@@ -4,11 +4,11 @@ VictoriaG -- 2020-12-18 03:00
   -created design PDF document with project components, component map, database organization, site map for front end, and tasks
   -uploaded document to team repo
 
-VictoriaG, AlvinW, JonathanL & MadelynM -- 2020-12-21 15:07
+VictoriaG, AlvinW, JonathanL, & MadelynM -- 2020-12-21 15:07
   -created design PDF document for Scenario 2 (web log hosting site)
   -uploaded document to team repo
   
-VictoriaG, AlvinW, JonathanL & MadelynM -- 2021-1-4 09:38
+VictoriaG, AlvinW, JonathanL, & MadelynM -- 2021-1-4 09:38
   -Issue #1: No action required
   -Issue #2: Will add the SQLite data type to the table
   -Issue #3: No action required
@@ -46,3 +46,25 @@ VictoriaG -- 2021-01-06 8:53 PM
 AlvinW -- 2021-01-06 10:04 PM
   -Fixed some issues related to navbar
   -Added profile functionality, displaying the user's bio
+
+JonathanL -- 2021-01-06 11:03 PM
+  -Changed filenames to be less confusing
+    -viewallposts.html
+    -viewblogposts.html
+    -viewuserblog.html
+    -viewallusers.html
+  -Edited a lot of the contents, but not all. 
+  -Changed __init__.py accordingly, changing the URLs of many routes
+    -viewallblogs
+    -update
+    -viewall
+    -viewblog
+    -viewprofile
+  -Set up viewing a blog post (viewblog & viewblogpost.html)
+  -Added more descriptive specification comments for routes
+  -new /blog that redirects to the logged in user's blog
+  -updateblog.html -> updatepost.html
+  -got viewblogpost working
+  -made viewuserblog work(?)
+  -worked on viewall
+  -tried to make their templates work together as well

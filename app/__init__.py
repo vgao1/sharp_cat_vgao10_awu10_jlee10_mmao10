@@ -90,13 +90,6 @@ def signup():
 def newuser():
         return render_template('signup.html',status=False)
 
-
-# (a/j) needs to be done 
-# adds a blog, addblog.html(not completed) will take take in a title and a body of text.
-@app.route("/addblog") 
-def addblog():
-    return render_template('addblog.html',status=True)
-
 @app.route("/add") 
 def add():
     global postcount
@@ -109,42 +102,71 @@ def add():
     db.commit()
     return render_template('response.html',status=True)
 
-
 # (a/j) needs to be done 
-# lists all blog entries from a user
-@app.route("/viewallblogs") 
-def viewallblogs():
-    return render_template('viewallblogs.html',status=True)
+# adds a blog, addpost.html(not completed) will take take in a title and a body of text.
+@app.route("/post/new") 
+def newpost():
+    return render_template('addpost.html',status=True)
 
-# (a/j) needs to be done 
-# adds text to a previous page, 
-@app.route("/updateblog") 
+# (j) done i guess
+# redirects logged in user to their own blog
+@app.route("/blog") 
+def loggedinblog():
+    return redirect('/blog/'+ username,status=True)
+
+# (a/j) needs a lot of work
+# edit menu for a previously posted post, must have been the current user's (needs verification) 
+@app.route("/post/<posturl>/edit") 
 def update():
-    return render_template('updateblog.html',status=True)
+    return render_template('updatepost.html',status=True)
 
-# (a/j) needs to be done 
-# returns a list of the users
-@app.route("/viewall") 
+# (j) doneish?
+# lists all blog entries from a user (replaced viewuser)
+@app.route("/blog/<usrname>") 
+def viewuserblog(usrname):
+    c = db.cursor()
+    c.execute('SELECT ID FROM users WHERE username = \'' + str(usrname) + '\'')
+    userid = c.fetchall()[0]
+    c.execute('SELECT id, title, text, date FROM posts WHERE UserID = \'' + int(posturl) + '\''
+        'ORDER BY id DESC') #descending
+    posts = c.fetchall()
+    c.close()
+    return render_template('viewuserblog.html', user=usrname, posts=posts)
+
+# (j) doneish?
+# returns all posts by everyone, recent ones first
+@app.route("/all") 
 def viewall():
-    return render_template('viewall.html',status=True)
+    c.execute('SELECT id, userid, title, text, date FROM posts'
+        'ORDER BY id DESC') #descending
+    posts = c.fetchall()
+    # add user fetch with id and replacing in posts var :pensive:
+    c.close()
+    return render_template('viewall.html', posts=posts)
 
-# (a/j) needs to be done 
-# returns a list of the blogs from a certain user
-@app.route("/viewuser") 
-def viewuser():
-    return render_template('viewuser.html',status=True)
+# (j) done, needs optimization though
+# displays one post
+# reminder on db: ID Integer, UserID text, Title text, Text text, Date text
+@app.route("/post/<posturl>") # changed from viewblog
+def viewblogpost(posturl):
+    if type(posturl) is int: # to avoid errors
+        c = db.cursor()
+        c.execute('SELECT title, text, date FROM posts WHERE id = \'' + int(posturl) + '\'') # gets the post info by ID
+        postinfo = c.fetchall()
+        c.execute('SELECT username FROM users WHERE UserID = \'' + int(postinfo[1]) + '\'') # gets user by user ID from post
+        userinfo = c.fetchall()
+        c.close()
+        return render_template('viewblogpost.html', title=postinfo[0], author=userinfo[0], body=postinfo[1], date=postinfo[2])
+    else:
+        return render_template('error.html', error='Not a valid blog post URL!')
 
-# (a/j) needs to be done 
-# displays one blog
-@app.route("/viewblog") 
-def viewblog():
-    return render_template('viewblog.html',status=True)
 
-# profile displays a user's biography
+# mm i feel like this needs something but idk what
+# profile displays the current user's biography
 @app.route("/profile")
 def viewprofile():
     c = db.cursor()
-    c.execute('SELECT Bio FROM users WHERE username=?',(session['username'],))
+    c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
     data = c.fetchone()
     data = str(data[0])
     return render_template('profile.html',status=True, bio = data, user = session['username'])
