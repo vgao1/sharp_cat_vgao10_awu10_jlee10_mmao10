@@ -79,3 +79,7 @@ AlvinW -- 2021-01-07 4:14 PM
 
 JonathanL -- 2021-01-07 5:28 PM
   -Cleaned up html comments and headings
+
+AlvinW -- 2021-01-07 5:36 PM
+  -got about 80% through with the updating blogs feature, was stopped by unknown syntax error
+  -fleshed out updateblog.html with necessary info
