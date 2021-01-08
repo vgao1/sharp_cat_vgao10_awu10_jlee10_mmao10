@@ -164,12 +164,16 @@ def viewall():
     c.execute('SELECT username FROM users')
     usernames = c.fetchall()
     c.close()
-    for u in posts1[]
-    
+    print(usernames)
+    print(posts1)
+    authors = []
+    for u in posts1:
+        authors.append(usernames[int(u[1])-1])
+    authors.reverse() #important to preserve order!!!
     if ('username' not in session):
-        return render_template('viewallposts.html', posts=posts1, status = False, author = , user = 'Guest')
+        return render_template('viewallposts.html', posts=posts1, status = False, author = authors, user = 'Guest')
     else:
-        return render_template('viewallposts.html', posts=posts1, status = True, author = , user = session['username'])
+        return render_template('viewallposts.html', posts=posts1, status = True, author = authors, user = session['username'])
 
 # (j) bugfix time!! also needs optimization
 # displays one post
