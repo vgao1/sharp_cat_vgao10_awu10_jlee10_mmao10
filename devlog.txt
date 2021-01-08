@@ -87,3 +87,7 @@ AlvinW -- 2021-01-07 5:36 PM
 JonathanL -- 2021-01-07 __:__PM
   -Edited post template to be more readable
   -Changed post order (newest on top) with |reverse
+
+AlvinW -- 2021-01-07 7:03 PM
+  -scrapped mypost code to try new approach
+  -various bugfixes

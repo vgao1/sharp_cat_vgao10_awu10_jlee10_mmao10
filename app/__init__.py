@@ -16,12 +16,9 @@ c = db.cursor()               #facilitate db ops -- you will use cursor to trigg
 c.execute('CREATE TABLE IF NOT EXISTS users(ID Integer, Username text, Password text, Bio text);')
 c.execute('CREATE TABLE IF NOT EXISTS posts(ID Integer, UserID text, Title text, Text text, Date text);')
 db.commit()
-username = ''
-password = ''
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(24)
-postcount = -1
-usercount = -1
+
 
 
 @app.route("/") #, methods=['GET', 'POST'])
