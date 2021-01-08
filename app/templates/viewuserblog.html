@@ -16,11 +16,14 @@ Displays a list of posts from a specific user
   </head>
 
   <body>
-   <h1> Here is a list of posts from {{ blogger }} </h1>
+  <h1> Here is a list of posts from {{ blogger }} </h1>
+   <h1> Welcome to {{ blogger }}'s blog </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+    <h3>Their Bio:</h3><p>{{bio}}</p>
     <br>
+    <h3>Their Posts:</h3>
     {% for p in posts|reverse %}
       <header>
         <div>
@@ -35,10 +38,10 @@ Displays a list of posts from a specific user
     {% if not loop.last %}
     {% endif %}
     {% endfor %}
-     
-<br></br>
+    
+    <br></br>
     <form action = "/logout">
-	<input type = "submit" value ="Logout">
+	  <input type = "submit" value ="Logout">
     </form>
 
   </body>

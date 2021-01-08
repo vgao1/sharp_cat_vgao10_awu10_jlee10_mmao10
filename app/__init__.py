@@ -139,6 +139,8 @@ def viewuserblog(usrname):
     userid = c.fetchall()[0]
     c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\'')
     posts = c.fetchall()
+    c.execute('SELECT Bio FROM users WHERE username = \'' + str(usrname) + '\'')
+    bio = c.fetchall()[0]
     c.close()
     if ('username' not in session):
         return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = False, user = 'Guest')
@@ -208,12 +210,12 @@ def viewblogpost(posturl):
 def viewprofile():
     if ('username' not in session):
         return redirect('/')
-    else:        
+    else:       
         c = db.cursor()
         c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
         data = c.fetchone()
         data = str(data[0])
-        return render_template('profile.html',status=True, bio = data, user = session['username'])
+    return render_template('profile.html',status=True, bio = data, user = session['username'])
 
 @app.route("/logout") #logout
 def logout():
