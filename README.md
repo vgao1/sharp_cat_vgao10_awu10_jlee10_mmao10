@@ -4,11 +4,13 @@
   * Navigation Bar
   * Jinja Templates & CSS
 * Alvin Wu (Back-End Developer): 
-  * Sign Up & Login 
-  * Creating & Viewing Individual Posts
-* Jonathan Lee (Back-End Developer): 
+  * Sign Up & Login
   * Login Authentication 
   * Editing Posts & Linking Posts to Authors 
+* Jonathan Lee (Back-End Developer): 
+  * Creating & Viewing Individual Posts
+  * Viewing Recent Posts (by user or all)
+  * Database Requests
 * Madelyn Mao (Front-End Developer): 
   * HTML files
  
