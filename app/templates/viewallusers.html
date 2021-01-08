@@ -23,7 +23,7 @@ Loops through users and displays them
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
-    {% for p in users|reverse %}
+    {% for p in users|sort(attribute="0") %}
       <header>
         <div>
           <h3><a href="/blog/{{p[0]}}">{{ p[0] }}</a></h3>
