@@ -60,7 +60,12 @@ def authenticate():
         #print(userid) #diagnostic
         return render_template('response.html', user = request.args['username'],status=True)
     else:
-        return render_template ('error.html',status=False)
+        c.execute('SELECT * FROM users WHERE username=?', (username,))
+        username_data = c.fetchall()
+        if len(username_data)==0:
+            return render_template('error.html',status=False,error="User does not exist. Please create an account.")
+        else:
+            return render_template('error.html',status=False,error="Incorrect Username/Password")
 
 # (A) done
 # sign up for an account, signup.html takes username, password, bio 
@@ -125,6 +130,8 @@ def updaterender(posturl):
 def update(posturl):
     c = db.cursor()
     c.execute('UPDATE posts SET Title = \'' + request.args.get('Title') + '\', Text =\'' + request.args.get('Text') + '\' WHERE ID = ?', (posturl,))
+    current_time = datetime.today().strftime('%Y-%m-%d-%H:%M')
+    c.execute('UPDATE posts SET Title = \'' + request.args.get('Title') + '\', Text =\'' + request.args.get('Text') + '\', Date =\'' +str(current_time)+'\' WHERE ID = ?', (posturl,))
     db.commit()
     return redirect('/post/' + str(posturl))
     
@@ -141,10 +148,7 @@ def viewuserblog(usrname):
     c.execute('SELECT Bio FROM users WHERE username = \'' + str(usrname) + '\'')
     bio = c.fetchall()[0]
     c.close()
-    if ('username' not in session):
-        return render_template('viewuserblog.html', bio=bio[0], blogger=usrname, posts=posts, status = False, user = 'Guest')
-    else:
-        return render_template('viewuserblog.html', bio=bio[0], blogger=usrname, posts=posts, status = True, user = session['username'])
+    return render_template('viewuserblog.html', bio=bio[0], blogger=usrname, posts=posts, status = True, user = session['username'])
 
 #(a) done
 @app.route("/viewusers")
@@ -172,10 +176,7 @@ def viewall():
     for u in posts1:
         authors.append(usernames[int(u[1])-1])
     authors.reverse() #important to preserve order!!!
-    if ('username' not in session):
-        return render_template('viewallposts.html', posts=posts1, status = False, author = authors, user = 'Guest')
-    else:
-        return render_template('viewallposts.html', posts=posts1, status = True, author = authors, user = session['username'])
+    return render_template('viewallposts.html', posts=posts1, status = True, author = authors, user = session['username'])
 
 # (j) bugfix time!! also needs optimization
 # displays one post
@@ -194,8 +195,6 @@ def viewblogpost(posturl):
         #print(postinfo[1]) #diagnostic
         #print(postinfo[2]) #diagnostic
         #print(userinfo[0]) #diagnostic
-        if ('username' not in session):
-            return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = False, allowEdit = False, user = 'Guest', posturl = posturl)
         if userinfo[0] == session['username']:
             return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, allowEdit = True, user = session['username'], posturl = posturl)
         else:
