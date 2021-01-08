@@ -140,7 +140,10 @@ def viewuserblog(usrname):
     c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\'')
     posts = c.fetchall()
     c.close()
-    return render_template('viewuserblog.html', user=usrname, posts=posts, status = True)
+    if ('username' not in session):
+        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = 'Guest')
+    else:
+        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = session['username'])
 
 @app.route("/viewusers")
 def viewusers():
