@@ -121,3 +121,5 @@ AlvinW -- 2021-01-07 11:00 PM
 
 JonathanL -- 2021-01-08 2:01 AM
   - Better wording on sections, general typo fixes
+  - Made password field an actual password field
+  
