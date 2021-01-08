@@ -146,6 +146,7 @@ def viewuserblog(usrname):
 # returns all posts by everyone, recent ones first
 @app.route("/all") 
 def viewall():
+    c = db.cursor()
     c.execute('SELECT * FROM posts')
     posts1 = c.fetchall()
     # add user fetch with id and replacing in posts var :pensive:
