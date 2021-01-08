@@ -95,3 +95,4 @@ AlvinW -- 2021-01-07 7:03 PM
 JonathanL -- 2021-01-07 8:52 PM
   -autoincrement for user and post ids
   -finally made editing work!!!
+  -fixed wrong username displaying on all posts page

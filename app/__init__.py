@@ -109,7 +109,7 @@ def newpost():
 def loggedinblog():
     return redirect('/blog/'+ session['username'])
 
-# (a/j) needs a lot of work
+# (a+j) we did it finally
 # edit menu for a previously posted post, must have been the current user's (needs verification) 
 @app.route("/post/<posturl>/edit") 
 def updaterender(posturl):
@@ -150,10 +150,12 @@ def viewall():
     posts1 = c.fetchall()
     # add user fetch with id and replacing in posts var :pensive:
     c.execute('SELECT username FROM users')
+    usernames = c.fetchall()
+    c.close()
     if ('username' not in session):
-        return render_template('viewallposts.html', posts=posts1, status = False, user = 'Guest')
+        return render_template('viewallposts.html', posts=posts1, status = False, user = usernames)
     else:
-        return render_template('viewallposts.html', posts=posts1, status = True, user=session['username'])
+        return render_template('viewallposts.html', posts=posts1, status = True, user = usernames)
 
 # (j) bugfix time!! also needs optimization
 # displays one post
