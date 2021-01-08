@@ -23,13 +23,10 @@ Update a blog post
 
 <form action="/update/{{posturl}}">
       <textarea id="Title" name="Title" rows="3" cols="200">{{oldtitle}}</textarea> 
-
-<form action="/update/{{posturl}}">
-       <textarea id="Text" name="Text" rows="25" cols="200">{{oldtext}}</textarea> 
-     
-<br></br>
-	<input type = "submit" value ="Submit">
-    </form>
+      <textarea id="Text" name="Text" rows="25" cols="200">{{oldtext}}</textarea> 
+      <br></br>
+      <input type = "submit" value ="Publish Changes">
+</form>
 
 <form action="/">
 <input type = "submit" value ="Discard Changes">
