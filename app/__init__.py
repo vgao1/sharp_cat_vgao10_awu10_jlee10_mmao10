@@ -139,11 +139,10 @@ def viewuserblog(usrname):
     userid = c.fetchall()[0]
     c.execute('SELECT ID, Title, Text, Date FROM posts WHERE UserID = \'' + str(userid[0]) + '\'')
     posts = c.fetchall()
+    c.execute('SELECT Bio FROM users WHERE username = \'' + str(usrname) + '\'')
+    bio = c.fetchall()[0]
     c.close()
-    if ('username' not in session):
-        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = False, user = 'Guest')
-    else:
-        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = session['username'])
+    return render_template('viewuserblog.html', blogger=usrname, user = session['username'], posts=posts, bio = bio[0], status = True)
 
 @app.route("/viewusers")
 def viewusers():
@@ -200,14 +199,11 @@ def viewblogpost(posturl):
 # profile displays the current user's biography
 @app.route("/profile")
 def viewprofile():
-    if ('username' not in session):
-        return redirect('/')
-    else:        
-        c = db.cursor()
-        c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
-        data = c.fetchone()
-        data = str(data[0])
-        return render_template('profile.html',status=True, bio = data, user = session['username'])
+    c = db.cursor()
+    c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
+    data = c.fetchone()
+    data = str(data[0])
+    return render_template('profile.html',status=True, bio = data, user = session['username'])
 
 @app.route("/logout") #logout
 def logout():

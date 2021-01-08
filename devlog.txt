@@ -105,3 +105,7 @@ JonathanL -- 2021-01-07 9:27 PM
   -Fixed double usernames issue
   -Fixed wrong username on others' blogs issue
   -Fixed guest user issue
+
+AlvinW -- 2021-01-07 9:51 PM
+  -a few bugfixes and style changes
+  -added biography to user blog

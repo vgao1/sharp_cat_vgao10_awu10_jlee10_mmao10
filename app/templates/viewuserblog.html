@@ -16,18 +16,19 @@ Displays a list of posts from a specific user
   </head>
 
   <body>
-   <h1> Here is a list of posts from {{ blogger }} </h1>
+   <h1> Welcome to {{ blogger }}'s blog </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+    <h3>Their Bio:</h3><p>{{bio}}</p>
     <br>
+    <h3>Their Posts:</h3>
     {% for p in posts|reverse %}
       <header>
         <div>
           <h3><a href="/post/{{p[0]}}">{{ p[1] }}</a></h3>
           <div class="authorinfo">by {{ blogger }} on {{ p[3] }}</div> <!-- add date formatter --> 
         </div>
-        <!-- add edit button here or something -->
       </header>
       <br>
       <p class="body">{{ p[2] }}</p>
@@ -36,10 +37,6 @@ Displays a list of posts from a specific user
     {% endif %}
     {% endfor %}
      
-<br></br>
-    <form action = "/logout">
-	<input type = "submit" value ="Logout">
-    </form>
 
   </body>
 {% endblock %}
