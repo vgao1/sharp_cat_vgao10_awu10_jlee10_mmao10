@@ -162,9 +162,9 @@ def viewall():
     usernames = c.fetchall()
     c.close()
     if ('username' not in session):
-        return render_template('viewallposts.html', posts=posts1, status = False, user = usernames)
+        return render_template('viewallposts.html', posts=posts1, status = False, author = usernames, user = 'Guest')
     else:
-        return render_template('viewallposts.html', posts=posts1, status = True, user = usernames)
+        return render_template('viewallposts.html', posts=posts1, status = True, author = usernames, user = session['username'])
 
 # (j) bugfix time!! also needs optimization
 # displays one post

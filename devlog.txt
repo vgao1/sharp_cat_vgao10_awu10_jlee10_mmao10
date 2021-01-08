@@ -100,3 +100,6 @@ JonathanL -- 2021-01-07 8:52 PM
 AlvinW -- 2021-01-07 9:22 PM
   -many bugfixes
   -added a view all users option to navbar and coded it
+
+JonathanL -- 2021-01-07 9:27 PM
+  -Fixed double usernames issue
