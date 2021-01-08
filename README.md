@@ -1,7 +1,6 @@
 # Sharp Blogs by Sharp Cat
 ## Roster & Roles:
 * Victoria Gao (Project Manager): 
-  * Website Navigation
   * Navigation Bar
   * Jinja Templates & CSS
 * Alvin Wu (Back-End Developer): 
