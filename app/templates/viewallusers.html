@@ -12,22 +12,26 @@ Loops through users and displays them
 
 <!DOCTYPE html>
 <html>
-
+{% extends "base.html" %}
+{% block body %}
   <head>
     <title> Team SharpCat </title>
   </head>
 
   <body>
-   <h1> List of users </h1>
+   <h1> List of Users </h1>
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
+    {% for p in users|reverse %}
+      <header>
+        <div>
+          <h3><a href="/blog/{{p[0]}}">{{ p[0] }}</a></h3>
+      </header>
+    {% endfor %}
      
 <br></br>
-    <form action = "/logout">
-	<input type = "submit" value ="Logout">
-    </form>
 
   </body>
-
+{% endblock %}
 </html>

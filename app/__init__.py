@@ -142,6 +142,14 @@ def viewuserblog(usrname):
     c.close()
     return render_template('viewuserblog.html', user=usrname, posts=posts, status = True)
 
+@app.route("/viewusers")
+def viewusers():
+    c = db.cursor()
+    c.execute('SELECT username FROM users')
+    users = c.fetchall()
+    return render_template('viewallusers.html', users = users, status = True, user = session['username'])
+    
+
 # (j) bugfix time!!
 # returns all posts by everyone, recent ones first
 @app.route("/all") 
