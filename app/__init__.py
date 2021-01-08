@@ -97,6 +97,11 @@ def add():
     db.commit()
     return render_template('response.html',status=True,user = session['username'])
 
+# (a) done
+@app.route("/post/new") 
+def newpost():
+    return render_template('addpost.html',status=True,user = session['username'])
+
 # (j) set up
 # redirects logged in user to their own blog
 @app.route("/blog") 
@@ -137,10 +142,11 @@ def viewuserblog(usrname):
     bio = c.fetchall()[0]
     c.close()
     if ('username' not in session):
-        return render_template('viewuserblog.html', blogger=usrname, userid = str(userid[0]), posts=posts, status = False, user = 'Guest')
+        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = False, user = 'Guest')
     else:
-        return render_template('viewuserblog.html', blogger=usrname, userid = str(userid[0]), posts=posts, status = True, user = session['username'])
+        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = session['username'])
 
+#(a) done
 @app.route("/viewusers")
 def viewusers():
     c = db.cursor()
