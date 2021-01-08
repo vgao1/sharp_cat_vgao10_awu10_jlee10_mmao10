@@ -65,7 +65,7 @@ def authenticate():
         c.execute('SELECT * FROM users WHERE username=?', (username,))
         username_data = c.fetchall()
         if len(username_data)==0:
-            return render_template('error.html',status=False,error="User does not exist. Please create an account.")
+            return render_template('error.html',status=False,error="User isn't registered. Please create an account.")
         else:
             return render_template('error.html',status=False,error="Incorrect Username/Password")
 
