@@ -100,13 +100,11 @@ JonathanL -- 2021-01-07 8:52 PM
 AlvinW -- 2021-01-07 9:22 PM
   -many bugfixes
   -added a view all users option to navbar and coded it
+  -a few bugfixes and style changes
+  -added biography to user blog
 
 JonathanL -- 2021-01-07 10:11 PM
   -Fixed double usernames issue
   -Fixed wrong username on others' blogs issue
   -Fixed guest user issue
   -Fixed wrong author issue
-
-AlvinW -- 2021-01-07 9:51 PM
-  -a few bugfixes and style changes
-  -added biography to user blog
