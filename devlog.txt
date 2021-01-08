@@ -108,3 +108,6 @@ JonathanL -- 2021-01-07 10:11 PM
   -Fixed wrong username on others' blogs issue
   -Fixed guest user issue
   -Fixed wrong author issue
+  -linked authors on blog posts
+  -linked authors on all posts page
+  -fixed bio bug on blog page

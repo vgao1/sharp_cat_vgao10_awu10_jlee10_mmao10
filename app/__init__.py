@@ -142,9 +142,9 @@ def viewuserblog(usrname):
     bio = c.fetchall()[0]
     c.close()
     if ('username' not in session):
-        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = False, user = 'Guest')
+        return render_template('viewuserblog.html', bio=bio[0], blogger=usrname, posts=posts, status = False, user = 'Guest')
     else:
-        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = session['username'])
+        return render_template('viewuserblog.html', bio=bio[0], blogger=usrname, posts=posts, status = True, user = session['username'])
 
 #(a) done
 @app.route("/viewusers")
