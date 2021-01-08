@@ -180,7 +180,7 @@ def viewall():
     authors = []
     for u in posts1:
         authors.append(usernames[int(u[1])-1])
-    authors.reverse() #important to preserve order!!!
+    authors.reverse() #important to preserve order!!! quite a sloppy way to do it though, ideally it would be more well-nested.
     return render_template('viewallposts.html', posts=posts1, status = True, author = authors, user = session['username'])
 
 # (j) bugfix time!! also needs optimization

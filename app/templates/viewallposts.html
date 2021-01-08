@@ -22,7 +22,7 @@ all posts from everyone, most recent
    <h2>
     Roster: Alvin Wu, Jonathan Lee, Madelyn Mao, Victoria Gao
     </h2>
-    {% for p in posts|sort(attribute='4')|reverse %}
+    {% for p in posts|sort(attribute='0')|reverse %}
       <header>
         <div>
           <h3><a href="/post/{{p[0]}}">{{ p[2] }}</a></h3>

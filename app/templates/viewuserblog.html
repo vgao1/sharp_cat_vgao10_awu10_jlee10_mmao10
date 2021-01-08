@@ -23,7 +23,7 @@ Displays a list of posts from a specific user
     <h3>Bio:</h3><p>{{bio}}</p>
     <br>
     <h3>Posts:</h3>
-    {% for p in posts|sort(attribute='3')|reverse %}
+    {% for p in posts|sort(attribute='0')|reverse %}
       <header>
         <div>
           <h3><a href="/post/{{p[0]}}">{{ p[1] }}</a></h3>
