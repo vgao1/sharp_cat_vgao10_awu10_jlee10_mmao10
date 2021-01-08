@@ -117,3 +117,4 @@ AlvinW -- 2021-01-07 11:00 PM
   -added discard changes button to post creation and editing posts
   -code cleanup, commented out diagnostic statements
   -quality of life changes in templates
+  -took away guests' rights by removing browse option when not logged in 
