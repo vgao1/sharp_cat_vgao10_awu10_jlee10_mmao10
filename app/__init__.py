@@ -141,7 +141,7 @@ def viewuserblog(usrname):
     posts = c.fetchall()
     c.close()
     if ('username' not in session):
-        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = 'Guest')
+        return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = False, user = 'Guest')
     else:
         return render_template('viewuserblog.html', blogger=usrname, posts=posts, status = True, user = session['username'])
 
@@ -200,11 +200,14 @@ def viewblogpost(posturl):
 # profile displays the current user's biography
 @app.route("/profile")
 def viewprofile():
-    c = db.cursor()
-    c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
-    data = c.fetchone()
-    data = str(data[0])
-    return render_template('profile.html',status=True, bio = data, user = session['username'])
+    if ('username' not in session):
+        return redirect('/')
+    else:        
+        c = db.cursor()
+        c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
+        data = c.fetchone()
+        data = str(data[0])
+        return render_template('profile.html',status=True, bio = data, user = session['username'])
 
 @app.route("/logout") #logout
 def logout():
