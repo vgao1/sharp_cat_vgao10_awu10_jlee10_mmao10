@@ -26,7 +26,7 @@ displays a specific blog post
 <h3> {{title}} </h3>
 By: <a href='/blog/{{author}}'> {{author}} </a>
 <br>
-Written On: {{date}}
+Last Edited: {{date}}
 <br>
 <br>
 {{body}}
@@ -36,7 +36,7 @@ Written On: {{date}}
 
 {% if (allowEdit) %}
 <form action="/post/{{posturl}}/edit">
-<input type="submit" value="Edit Post">
+<input type="submit" value="Edit">
 </form>
 {% endif %}
      
