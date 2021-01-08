@@ -51,14 +51,16 @@ def authenticate():
     c = db.cursor()
     c.execute('SELECT * FROM users WHERE username=? AND password = ?', (username,password))
     data = c.fetchall()
-    if len(data) == 1:
-        session['username'] = username
-        session['password'] = password
-        c.execute('SELECT ID FROM users WHERE username=? AND password = ?', (username,password))
-        userid = c.fetchone()
-        session['UserID'] = int(userid[0])
-        #print(userid) #diagnostic
-        return render_template('response.html', user = request.args['username'],status=True)
+
+    if data: #YES THIS WORKS WOOOOOOOOOOO
+            session['username'] = username
+            session['password'] = password
+            c.execute('SELECT ID FROM users WHERE username=? AND password = ?', (username,password))
+            userid = c.fetchone()
+            session['UserID'] = int(userid[0])
+            #print(userid) #diagnostic
+            return render_template('response.html', user = request.args['username'],status=True)
+
     else:
         c.execute('SELECT * FROM users WHERE username=?', (username,))
         username_data = c.fetchall()
