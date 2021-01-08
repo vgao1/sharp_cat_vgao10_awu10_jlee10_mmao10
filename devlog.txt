@@ -118,3 +118,6 @@ AlvinW -- 2021-01-07 11:00 PM
   -code cleanup, commented out diagnostic statements
   -quality of life changes in templates
   -took away guests' rights by removing browse option when not logged in 
+
+JonathanL -- 2021-01-08 2:01 AM
+  - Better wording on sections, general typo fixes
