@@ -111,3 +111,9 @@ JonathanL -- 2021-01-07 10:11 PM
   -linked authors on blog posts
   -linked authors on all posts page
   -fixed bio bug on blog page
+
+AlvinW -- 2021-01-07 11:00 PM
+  -nuked the redundant profile feature
+  -added discard changes button to post creation and editing posts
+  -code cleanup, commented out diagnostic statements
+  -quality of life changes in templates

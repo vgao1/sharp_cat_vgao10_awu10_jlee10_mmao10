@@ -57,7 +57,7 @@ def authenticate():
         c.execute('SELECT ID FROM users WHERE username=? AND password = ?', (username,password))
         userid = c.fetchone()
         session['UserID'] = int(userid[0])
-        print(userid)
+        #print(userid) #diagnostic
         return render_template('response.html', user = request.args['username'],status=True)
     else:
         return render_template ('error.html',status=False)
@@ -118,7 +118,7 @@ def updaterender(posturl):
     data = data[0]
     oldtitle = data[0]
     oldtext = data[1]
-    print(posturl)
+    #print(posturl) #diagnostic
     return render_template('updatepost.html',status=True, oldtitle = oldtitle, oldtext = oldtext, posturl = posturl)
 
 @app.route("/update/<posturl>", methods=['GET'])
@@ -166,8 +166,8 @@ def viewall():
     c.execute('SELECT username FROM users')
     usernames = c.fetchall()
     c.close()
-    print(usernames)
-    print(posts1)
+    #print(usernames) #diagnostic
+    #print(posts1) #diagnostic
     authors = []
     for u in posts1:
         authors.append(usernames[int(u[1])-1])
@@ -190,10 +190,10 @@ def viewblogpost(posturl):
         userinfo = c.fetchall()
         userinfo = userinfo[0]
         c.close()
-        print(postinfo[0])
-        print(postinfo[1])
-        print(postinfo[2])
-        print(userinfo[0])
+        #print(postinfo[0]) #diagnostic
+        #print(postinfo[1]) #diagnostic
+        #print(postinfo[2]) #diagnostic
+        #print(userinfo[0]) #diagnostic
         if ('username' not in session):
             return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = False, allowEdit = False, user = 'Guest', posturl = posturl)
         if userinfo[0] == session['username']:
@@ -202,20 +202,6 @@ def viewblogpost(posturl):
             return render_template('viewblogpost.html', title=postinfo[1], author=userinfo[0], body=postinfo[2], date=postinfo[3], status = True, allowEdit = False, user = session['username'], posturl = posturl)        
     else:
         return render_template('error.html', error='Not a valid blog post URL!')
-
-
-# mm i feel like this needs something but idk what
-# profile displays the current user's biography
-@app.route("/profile")
-def viewprofile():
-    if ('username' not in session):
-        return redirect('/')
-    else:       
-        c = db.cursor()
-        c.execute('SELECT Bio FROM users WHERE Username=?',(session['username'],))
-        data = c.fetchone()
-        data = str(data[0])
-    return render_template('profile.html',status=True, bio = data, user = session['username'])
 
 @app.route("/logout") #logout
 def logout():
