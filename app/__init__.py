@@ -114,7 +114,7 @@ def loggedinblog():
 @app.route("/post/<posturl>/edit") 
 def updaterender(posturl):
     c = db.cursor()
-    c.execute('SELECT Title, Text FROM posts WHERE ID=?', (posturl,))
+    c.execute('SELECT Title, Text FROM posts WHERE ID = ?', (posturl,))
     data = c.fetchall()
     data = data[0]
     oldtitle = data[0]
@@ -125,9 +125,9 @@ def updaterender(posturl):
 @app.route("/update/<posturl>")
 def update(posturl):
     c = db.cursor()
-    c.execute('UPDATE posts SET Title =' + request.args['Title'] + ', Text =' + request.args['Text'] + ', Date =' + datetime.today().strftime('%Y-%m-%d-%H:%M') + 'WHERE ID=?',(posturl,))
+    c.execute('UPDATE posts SET Title =' + request.args['Title'] + ', Text =' + request.args['Text'] + 'WHERE ID = ?',(posturl,))
     db.commit()
-    return redirect('/post/' + posturl)
+    return redirect('/post/' + str(posturl))
     
 
 # (j) bugfix time!!
