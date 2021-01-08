@@ -84,10 +84,13 @@ AlvinW -- 2021-01-07 5:36 PM
   -got about 80% through with the updating blogs feature, was stopped by unknown syntax error
   -fleshed out updateblog.html with necessary info
 
-JonathanL -- 2021-01-07 __:__PM
+JonathanL -- 2021-01-07 6:37PM
   -Edited post template to be more readable
   -Changed post order (newest on top) with |reverse
 
 AlvinW -- 2021-01-07 7:03 PM
   -scrapped mypost code to try new approach
   -various bugfixes
+
+JonathanL -- 2021-01-07 7:28 PM
+  -autoincrement for user and post ids

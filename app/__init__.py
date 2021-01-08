@@ -13,8 +13,8 @@ import sqlite3   #enable control of an sqlite database
 DB_FILE="discobandit.db"
 db = sqlite3.connect(DB_FILE, check_same_thread = False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops -- you will use cursor to trigger db events
-c.execute('CREATE TABLE IF NOT EXISTS users(ID Integer, Username text, Password text, Bio text);')
-c.execute('CREATE TABLE IF NOT EXISTS posts(ID Integer, UserID text, Title text, Text text, Date text);')
+c.execute('CREATE TABLE IF NOT EXISTS users(ID INTEGER NOT NULL PRIMARY KEY, Username text NOT NULL, Password text, Bio text);')
+c.execute('CREATE TABLE IF NOT EXISTS posts(ID INTEGER NOT NULL PRIMARY KEY, UserID text NOT NULL, Title text NOT NULL, Text text, Date text);')
 db.commit()
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(24)
@@ -77,9 +77,8 @@ def signup():
         data = c.fetchall()
         if len(data) > 0:
             return render_template('error.html', error = 'A user with that username already exists')
-        usercount+= 1
-        params = (usercount,username,password,bio)
-        c.execute('INSERT INTO users(ID,Username,Password,Bio) VALUES(?,?,?,?)', params)
+        params = (username,password,bio)
+        c.execute('INSERT INTO users(Username,Password,Bio) VALUES(?,?,?)', params)
         db.commit()
         return render_template('login.html',status=False)
 
@@ -90,13 +89,11 @@ def newuser():
 
 @app.route("/add") 
 def add():
-    global postcount
     c = db.cursor()
     text = request.args['Text']
     title = request.args['Title']
-    postcount += 1
-    params = (postcount,session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
-    c.execute('INSERT INTO posts(ID,UserID,Title,Text,Date) VALUES(?,?,?,?,?)', params)
+    params = (session['UserID'],title,text,datetime.today().strftime('%Y-%m-%d-%H:%M'))
+    c.execute('INSERT INTO posts(UserID,Title,Text,Date) VALUES(?,?,?,?)', params)
     db.commit()
     return render_template('response.html',status=True,user = session['username'])
 
