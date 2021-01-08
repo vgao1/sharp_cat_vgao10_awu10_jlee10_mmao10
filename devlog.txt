@@ -96,3 +96,7 @@ JonathanL -- 2021-01-07 8:52 PM
   -autoincrement for user and post ids
   -finally made editing work!!!
   -fixed wrong username displaying on all posts page
+
+AlvinW -- 2021-01-07 9:22 PM
+  -many bugfixes
+  -added a view all users option to navbar and coded it
