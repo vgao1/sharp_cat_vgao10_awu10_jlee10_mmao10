@@ -3,6 +3,9 @@
 #P0 -- Da Art of Story Tellin' (Pt 2)
 #2020-12-28
 
+#main regrets:
+# no password encryption
+
 from flask import Flask,session            #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
 from flask import request, redirect           #facilitate form submission
@@ -67,7 +70,7 @@ def authenticate():
         if len(username_data)==0:
             return render_template('error.html',status=False,error="User isn't registered. Please create an account.")
         else:
-            return render_template('error.html',status=False,error="Incorrect Username/Password")
+            return render_template('error.html',status=False,error="Incorrect Username/Password.")
 
 # (A) done
 # sign up for an account, signup.html takes username, password, bio 
@@ -83,7 +86,7 @@ def signup():
         c.execute('SELECT * FROM users WHERE username=?', (username,))
         data = c.fetchall()
         if len(data) > 0:
-            return render_template('error.html', error = 'A user with that username already exists')
+            return render_template('error.html', error = 'A user with that username already exists.')
         params = (username,password,bio)
         c.execute('INSERT INTO users(Username,Password,Bio) VALUES(?,?,?)', params)
         db.commit()
