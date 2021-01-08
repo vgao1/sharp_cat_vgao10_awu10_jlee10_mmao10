@@ -129,3 +129,8 @@ VictoriaG -- 2021-01-08 2:20 AM
   -wrote sorting methods in HTML templates to display usernames on View Users page in alphabetical order, posts on Browse and My Posts pages with more recently edited posts on the top.
   -added placeholders displayed in the input fields of HTML form on New Post page to inform users what to put in each text box: (1) Title of post, (2) Text in the body of post.
   -added conditionals in the authenticate() method of Python script to specify when a user enters incorrect username/password or enters a username that hasn't been registered.
+
+JonathanL -- 2021-01-08 2:41 AM
+  -Deleted testing database
+  -modified responses
+  -Changed sorting to ID-based instead of last modified
