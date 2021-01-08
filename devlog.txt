@@ -92,5 +92,6 @@ AlvinW -- 2021-01-07 7:03 PM
   -scrapped mypost code to try new approach
   -various bugfixes
 
-JonathanL -- 2021-01-07 7:28 PM
+JonathanL -- 2021-01-07 8:52 PM
   -autoincrement for user and post ids
+  -finally made editing work!!!
